@@ -1,5 +1,6 @@
 import { initializeApp } from "firebase/app";
 import {getFirestore} from '@firebase/firestore';
+import {deleteDoc,doc,addDoc,collection,updateDoc} from 'firebase/firestore';
 
 
 const firebaseConfig = {
@@ -14,3 +15,20 @@ const firebaseConfig = {
 
 const app = initializeApp(firebaseConfig);
 export const db = getFirestore(app);
+
+export const deleteUser = async (id) => {
+  const expenseDocRef = doc(db, 'users' , id)
+  deleteDoc(expenseDocRef);
+}
+
+const usersCollectionRef = collection(db, 'users')
+
+export const createUser = async (values) =>{
+  await addDoc(usersCollectionRef,values)
+}
+
+export const updateUser = async (id,newValues) => {
+  const userDoc = doc(db,'users', id)
+  
+  await updateDoc(userDoc,newValues)
+}

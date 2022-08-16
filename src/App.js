@@ -3,15 +3,15 @@ import { db } from './firebase/config';
 import {collection, getDocs,addDoc,updateDoc,deleteDoc,doc} from 'firebase/firestore'
 import {useEffect, useState} from 'react'
 import { useFormik } from 'formik';
-import { async } from '@firebase/util';
+import { async } from '@firebase/util'; 
+import ExpenseForm from './components/expense-form/ExpenseForm';
 
 function App() {  
   const [users,setUsers] = useState([]);
-  const usersCollectionRef = collection(db,'users')
+  const usersCollectionRef = collection(db,'expenses')
   const createUser = async (values) => {
     await addDoc(usersCollectionRef,values)
   }
-
 
   const formik = useFormik({
     initialValues: {
@@ -26,28 +26,30 @@ function App() {
 
  
   const updateUser = async (id,age) => {
-    const userDoc = doc(db,'users',id)
-    const newFields = {name: 'test' ,age : age + 1};
+    const userDoc = doc(db,'expenses',id)
+    const newFields = {name: 'test'};
     
-    // new fields will contain the disered updat, matching whatever values the object has and needs update
+    // new fields will contain the disered updat, matching whatever values the object has and needs update IMPORTANT
 
      await updateDoc(userDoc,newFields);
   }
+  const getUsers = async () => {
+
+    const data = await getDocs(usersCollectionRef)
+    setUsers(data.docs.map((doc) => ({...doc.data(), id:doc.id})))
+    console.log(data)
+  } 
+
 
 const deleteUser = async (id) => {
-  const userDoc = doc(db,'users',id)
+  const userDoc = doc(db,'expenses',id)
   deleteDoc(userDoc);
+  getUsers()
 
 }
 
   useEffect(() => {
-    const getUsers = async () => {
-
-      const data = await getDocs(usersCollectionRef)
-      setUsers(data.docs.map((doc) => ({...doc.data(), id:doc.id})))
-      console.log(data)
-    } 
-
+    
     getUsers()
   },[])
 
@@ -81,17 +83,23 @@ const deleteUser = async (id) => {
 
 
      {
-      users.map((user) => {
+      users.map((expense) => {
         return (
           <div>
-            <h2>{user.name}</h2>
-            <h3>{user.age}</h3>
-            <button onClick={() => updateUser(user.id, user.age)}>update</button>
-            <button onClick={() => deleteUser(user.id)}>delete</button>
+            <h2>Divida: {expense.name}</h2>
+            <h3>Vencimento: {expense.duedate}</h3>
+            <h3>Valor:{expense.value}</h3>
+            <h3>Pago em: {expense.paymentMadeIn}</h3>
+            <button onClick={() => updateUser(expense.id)}>update</button>
+            <button onClick={() => deleteUser(expense.id)}>delete</button>
+
+            
           </div>
         )
       })
      }
+
+<ExpenseForm/>
     </div>
   );
 }
