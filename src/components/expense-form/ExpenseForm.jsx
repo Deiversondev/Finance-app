@@ -1,15 +1,15 @@
 import React from 'react'
 import { useFormik } from 'formik'
-import { db } from '../../firebase/config'
+import { db,createExpense } from '../../firebase/config'
 import {collection, getDocs,addDoc,updateDoc,deleteDoc,doc} from 'firebase/firestore'
 
 function ExpenseForm() {
 
 
   const expensesCollectionRef = collection(db,'expenses')
-  const createExpense = async (values) => {
-    await addDoc(expensesCollectionRef,values)
-  }
+  // const createExpense = async (values) => {
+  //   await addDoc(expensesCollectionRef,values)
+  // }
   const formik = useFormik({
     initialValues: {
       name: '',

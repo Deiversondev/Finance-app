@@ -3,8 +3,9 @@ import { db } from './firebase/config';
 import {collection, getDocs,addDoc,updateDoc,deleteDoc,doc} from 'firebase/firestore'
 import {useEffect, useState} from 'react'
 import { useFormik } from 'formik';
-import { async } from '@firebase/util'; 
 import ExpenseForm from './components/expense-form/ExpenseForm';
+import Expense from './components/expenses-Component/Expense';
+
 
 function App() {  
   const [users,setUsers] = useState([]);
@@ -16,7 +17,7 @@ function App() {
   const formik = useFormik({
     initialValues: {
       name: '',
-      age:0,
+      age:'',
     },
     onSubmit: values => {
       alert(JSON.stringify(values, null, 2));
@@ -24,15 +25,10 @@ function App() {
     },
   });
 
- 
-  const updateUser = async (id,age) => {
-    const userDoc = doc(db,'expenses',id)
-    const newFields = {name: 'test'};
-    
-    // new fields will contain the disered updat, matching whatever values the object has and needs update IMPORTANT
 
-     await updateDoc(userDoc,newFields);
-  }
+    // new fields will contain the disered updat, matching whatever values the object has and needs update IMPORTANT
+    
+ 
   const getUsers = async () => {
 
     const data = await getDocs(usersCollectionRef)
@@ -86,14 +82,9 @@ const deleteUser = async (id) => {
       users.map((expense) => {
         return (
           <div>
-            <h2>Divida: {expense.name}</h2>
-            <h3>Vencimento: {expense.duedate}</h3>
-            <h3>Valor:{expense.value}</h3>
-            <h3>Pago em: {expense.paymentMadeIn}</h3>
-            <button onClick={() => updateUser(expense.id)}>update</button>
-            <button onClick={() => deleteUser(expense.id)}>delete</button>
 
-            
+            <Expense expense={expense}/>
+        
           </div>
         )
       })
