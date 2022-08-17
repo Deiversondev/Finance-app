@@ -5,6 +5,7 @@ import {useEffect, useState} from 'react'
 import { useFormik } from 'formik';
 import ExpenseForm from './components/expense-form/ExpenseForm';
 import Expense from './components/expenses-Component/Expense';
+import AllExpenses from './pages/AllExpenses';
 
 
 function App() {  
@@ -33,7 +34,7 @@ function App() {
 
     const data = await getDocs(usersCollectionRef)
     setUsers(data.docs.map((doc) => ({...doc.data(), id:doc.id})))
-    console.log(data)
+    // console.log(data)
   } 
 
 
@@ -53,7 +54,7 @@ const deleteUser = async (id) => {
     <div className="App">
 
 
-<form onSubmit={formik.handleSubmit}>
+{/* <form onSubmit={formik.handleSubmit}>
        <label htmlFor="name">First Name</label>
        <input
          id="name"
@@ -74,7 +75,7 @@ const deleteUser = async (id) => {
        />
  
        <button type="submit">Submit</button>
-     </form>
+     </form> */}
 
 
 
@@ -83,13 +84,14 @@ const deleteUser = async (id) => {
         return (
           <div>
 
-            <Expense expense={expense}/>
+            {/* <Expense expense={expense}/> */}
         
           </div>
         )
       })
      }
 
+     <AllExpenses/>
 <ExpenseForm/>
     </div>
   );

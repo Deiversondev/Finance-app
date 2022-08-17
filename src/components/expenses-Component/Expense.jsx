@@ -1,10 +1,13 @@
-import {useState} from 'react';
+import {useState,useContext} from 'react';
+import { ExpenseContext } from '../../context/context';
 import { deleteExpense, updateExpense } from '../../firebase/config';
 import {useFormik} from 'formik'
 import './Expense.css'
 // import { deleteUser } from '../../firebase/config';
 
 function Expense({expense}) {
+
+  const {currentExpense,setCurrentExpense} = useContext(ExpenseContext)
 
   const {id} = expense
 
@@ -22,7 +25,7 @@ function Expense({expense}) {
         
       });
 
-const [active,setactive] = useState(true);
+const [active,setactive] = useState(false);
   return (
     <div className='maincontainer'>
         <div>
@@ -32,6 +35,7 @@ const [active,setactive] = useState(true);
         <h3>Pago em: {expense.paymentMadeIn}</h3>
         <button onClick={() => deleteExpense(expense.id)}>Delete</button>
         <button onClick={() => setactive(!active)}>Edit</button>
+        <button onClick={() => setCurrentExpense(expense)}>hh</button>
         </div>
 
        { active &&  <div>
