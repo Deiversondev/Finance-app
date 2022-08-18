@@ -33,8 +33,7 @@ function AllExpenses() {
                 return ( 
                    <div>
                     <Expense expense={expense}/>
-                    <button onClick={() => console.log(currentExpense)}>con</button>
-                   </div>
+                  </div>
                 )
             })
         }

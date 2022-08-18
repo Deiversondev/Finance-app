@@ -6,6 +6,9 @@ import { useFormik } from 'formik';
 import ExpenseForm from './components/expense-form/ExpenseForm';
 import Expense from './components/expenses-Component/Expense';
 import AllExpenses from './pages/AllExpenses';
+import {Routes,Route} from 'react-router-dom';
+import Navbar from './components/navbar/Navbar';
+import Edit from './pages/Edit';
 
 
 function App() {  
@@ -27,6 +30,7 @@ function App() {
   });
 
 
+    
     // new fields will contain the disered updat, matching whatever values the object has and needs update IMPORTANT
     
  
@@ -79,22 +83,21 @@ const deleteUser = async (id) => {
 
 
 
-     {
-      users.map((expense) => {
-        return (
-          <div>
+<Routes>
+    <Route path='/' element={<Navbar/>} >
+    </Route>
+    <Route path='edit' element={<Edit/>} />
+    <Route path='all' index element={<AllExpenses/>} />
+</Routes>
 
-            {/* <Expense expense={expense}/> */}
-        
-          </div>
-        )
-      })
-     }
 
-     <AllExpenses/>
+
+
+     
 <ExpenseForm/>
     </div>
   );
 }
 
 export default App;
+ //edit route , don't forget

@@ -1,34 +1,34 @@
-import React from 'react'
-import { useFormik } from 'formik'
-import { db,createExpense } from '../../firebase/config'
-import {collection, getDocs,addDoc,updateDoc,deleteDoc,doc} from 'firebase/firestore'
+import {useState,useContext} from 'react';
+import { ExpenseContext } from '../context/context';
+import {useFormik} from 'formik'
+import { updateExpense } from '../firebase/config';
 
-function ExpenseForm() {
+function Edit() {
 
+    const {currentExpense} = useContext(ExpenseContext);
 
-  const expensesCollectionRef = collection(db,'expenses')
-  // const createExpense = async (values) => {
-  //   await addDoc(expensesCollectionRef,values)
-  // }
-  const formik = useFormik({
-    initialValues: {
-      name: '',
-      value:0,
-      duedate:'',
-      paymentMadeIn:''
-    },
-    onSubmit: values => {
-      alert(JSON.stringify(values, null, 2));
-      createExpense(values)
-    },
-  });
+    // const {id} = currentExpense
 
+    const formik = useFormik({
+        initialValues: {
+          name: currentExpense.name,
+          value:currentExpense.value,
+          duedate:currentExpense.duedate,
+          paymentMadeIn:currentExpense.paymentMadeIn,
+        },
+        onSubmit: values => { 
+          updateExpense(values)  
+        //   setactive(!active)       
+        },
+        
+      });
 
 
   return (
     <div>
 
-<form onSubmit={formik.handleSubmit}>
+<div>
+       <form onSubmit={formik.handleSubmit}>
       <div>
          <label htmlFor="name">Nome</label>
        <input
@@ -73,11 +73,16 @@ function ExpenseForm() {
        />
 </div>
  
-       <button type="submit">Salvar</button>
+       <button type="submit">Submit</button>
      </form>
-
+        </div> 
+        
+       
+     
     </div>
+
+    
   )
 }
 
-export default ExpenseForm;
+export default Edit;

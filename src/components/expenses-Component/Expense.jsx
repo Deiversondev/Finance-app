@@ -3,13 +3,23 @@ import { ExpenseContext } from '../../context/context';
 import { deleteExpense, updateExpense } from '../../firebase/config';
 import {useFormik} from 'formik'
 import './Expense.css'
+import { useNavigate } from "react-router-dom";
+import {Outlet, Link} from 'react-router-dom';
+
 // import { deleteUser } from '../../firebase/config';
 
 function Expense({expense}) {
 
   const {currentExpense,setCurrentExpense} = useContext(ExpenseContext)
+  const navigate = useNavigate()
 
   const {id} = expense
+  console.log(currentExpense);
+
+const  EditExpense = (expense) =>  {
+  setCurrentExpense(expense)
+  navigate('/edit')
+}
 
     const formik = useFormik({
         initialValues: {
@@ -27,68 +37,18 @@ function Expense({expense}) {
 
 const [active,setactive] = useState(false);
   return (
-    <div className='maincontainer'>
+    
         <div>
         <h2>Divida: {expense.name}</h2>
         <h3>Vencimento: {expense.duedate}</h3>
         <h3>Valor:{expense.value}</h3>
         <h3>Pago em: {expense.paymentMadeIn}</h3>
-        <button onClick={() => deleteExpense(expense.id)}>Delete</button>
-        <button onClick={() => setactive(!active)}>Edit</button>
-        <button onClick={() => setCurrentExpense(expense)}>hh</button>
-        </div>
-
-       { active &&  <div>
-       <form onSubmit={formik.handleSubmit}>
-      <div>
-         <label htmlFor="name">Nome</label>
-       <input
-         id="name"
-         name="name"
-         type="text"
-         onChange={formik.handleChange}
-         value={formik.values.name}
-       />
-      </div>
- 
-    <div>
-    <label htmlFor="value">Valor</label>
-          <input
-            id="value"
-            name="value"
-            type="number"
-            onChange={formik.handleChange}
-            value={formik.values.value}
-          />
-    </div>
-
-    <div>
-    <label htmlFor="dueDate">Vencimento</label>
-          <input
-            id="duedate"
-            name="duedate"
-            type="date"
-            onChange={formik.handleChange}
-            value={formik.values.duedate}
-          />
-    </div>
-
-<div>
-<label htmlFor="paymentMadeIn">Pagamento feito em : (PG)</label>
-       <input
-         id="paymentMadeIn"
-         name="paymentMadeIn"
-         type="date"
-         onChange={formik.handleChange}
-         value={formik.values.paymentMadeIn}
-       />
-</div>
- 
-       <button type="submit">Submit</button>
-     </form>
-        </div> }
-        
+        <button onClick={() => deleteExpense(expense.id)}>Apagar</button>
        
+        <button onClick={() => EditExpense(expense)}>Editar</button>
+
+
+       {/* <button onClick={() => EditExpense(currentExpense)}>EDDDDITAR</button>  */}
      
     </div>
     
