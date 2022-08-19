@@ -34,7 +34,7 @@ function App() {
     // new fields will contain the disered updat, matching whatever values the object has and needs update IMPORTANT
     
  
-  const getUsers = async () => {
+ const getExpenses = async () => {
 
     const data = await getDocs(usersCollectionRef)
     setUsers(data.docs.map((doc) => ({...doc.data(), id:doc.id})))
@@ -45,13 +45,13 @@ function App() {
 const deleteUser = async (id) => {
   const userDoc = doc(db,'expenses',id)
   deleteDoc(userDoc);
-  getUsers()
+  getExpenses()
 
 }
 
   useEffect(() => {
     
-    getUsers()
+    getExpenses()
   },[])
 
   return (
@@ -85,16 +85,12 @@ const deleteUser = async (id) => {
 
 <Routes>
     <Route path='/' element={<Navbar/>} >
-    </Route>
     <Route path='edit' element={<Edit/>} />
     <Route path='all' index element={<AllExpenses/>} />
+    <Route path='new' index element={<ExpenseForm/>} />
+</Route>
+    
 </Routes>
-
-
-
-
-     
-<ExpenseForm/>
     </div>
   );
 }

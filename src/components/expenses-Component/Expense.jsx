@@ -14,7 +14,6 @@ function Expense({expense}) {
   const navigate = useNavigate()
 
   const {id} = expense
-  console.log(currentExpense);
 
 const  EditExpense = (expense) =>  {
   setCurrentExpense(expense)
@@ -30,7 +29,7 @@ const  EditExpense = (expense) =>  {
         },
         onSubmit: values => { 
           updateExpense(id , values)  
-          setactive(!active)       
+                
         },
         
       });
@@ -39,13 +38,13 @@ const [active,setactive] = useState(false);
   return (
     
         <div>
-        <h2>Divida: {expense.name}</h2>
-        <h3>Vencimento: {expense.duedate}</h3>
+        <h2>Despesa: {expense.name}</h2>
+        <h3>Data de Vencimento: {expense.duedate}</h3>
         <h3>Valor:{expense.value}</h3>
-        <h3>Pago em: {expense.paymentMadeIn}</h3>
-        <button onClick={() => deleteExpense(expense.id)}>Apagar</button>
+        <h3>Paga <em></em>: {expense.paymentMadeIn}</h3>
+        <button onClick={() => deleteExpense(expense.id)}>Apagar despesa</button>
        
-        <button onClick={() => EditExpense(expense)}>Editar</button>
+        <button onClick={() => EditExpense(expense)}>Editar despesa</button>
 
 
        {/* <button onClick={() => EditExpense(currentExpense)}>EDDDDITAR</button>  */}

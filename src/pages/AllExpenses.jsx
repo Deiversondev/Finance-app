@@ -16,14 +16,11 @@ function AllExpenses() {
     const getExpenses = async () =>{
         const data = await getDocs(expensesCollectionRef);
         setExpenses(data.docs.map((doc) => ({...doc.data(), id:doc.id})))
-        console.log(data)
     }
 
     useEffect(() => {
       getExpenses()
     }, [])
-    
-    // getExpenses()
   return (
     <div>
         

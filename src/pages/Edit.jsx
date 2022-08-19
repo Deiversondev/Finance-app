@@ -2,12 +2,15 @@ import {useState,useContext} from 'react';
 import { ExpenseContext } from '../context/context';
 import {useFormik} from 'formik'
 import { updateExpense } from '../firebase/config';
+import { useNavigate } from "react-router-dom";
+
 
 function Edit() {
 
     const {currentExpense} = useContext(ExpenseContext);
+    const navigate = useNavigate();
 
-    // const {id} = currentExpense
+    const {id} = currentExpense
 
     const formik = useFormik({
         initialValues: {
@@ -17,7 +20,8 @@ function Edit() {
           paymentMadeIn:currentExpense.paymentMadeIn,
         },
         onSubmit: values => { 
-          updateExpense(values)  
+          updateExpense(id,values) 
+          navigate('/all')
         //   setactive(!active)       
         },
         

@@ -1,10 +1,12 @@
 import React from 'react'
 import { useFormik } from 'formik'
 import { db,createExpense } from '../../firebase/config'
+import { useNavigate } from "react-router-dom";
 import {collection, getDocs,addDoc,updateDoc,deleteDoc,doc} from 'firebase/firestore'
 
 function ExpenseForm() {
 
+  const navigate = useNavigate();
 
   const expensesCollectionRef = collection(db,'expenses')
   // const createExpense = async (values) => {
@@ -19,6 +21,7 @@ function ExpenseForm() {
     },
     onSubmit: values => {
       alert(JSON.stringify(values, null, 2));
+      navigate('/all')
       createExpense(values)
     },
   });
@@ -29,6 +32,8 @@ function ExpenseForm() {
     <div>
 
 <form onSubmit={formik.handleSubmit}>
+
+  <h1>Adicionar nova despesa</h1>
       <div>
          <label htmlFor="name">Nome</label>
        <input

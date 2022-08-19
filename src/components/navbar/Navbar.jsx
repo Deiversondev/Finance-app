@@ -6,6 +6,7 @@ function Navbar() {
     <div>
         <h1>hhhhhhhhhhhg
             <Link to='/all' >Todas as dívidas</Link>
+            <Link to='/new' >Cadastrar divida</Link>
             
         </h1>
         <Outlet/>
