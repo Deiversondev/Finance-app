@@ -1,20 +1,17 @@
-/* .mainContainer {
-    display: flex;
-    width: 80%;
-} */
-
 table {
     width: 70%;
     margin: 0px auto;
     display: flex;
     flex-direction: column;
-    justify-content: space-evenly;
+    justify-content: center;
     border: 1px solid #000;
+    align-items: center;
 }
 
 th {
     border: 1px solid #000;
     width: 80px;
+    word-wrap: break-word;
 }
 
 td {

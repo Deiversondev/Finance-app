@@ -39,7 +39,7 @@ const  EditExpense = (expense) =>  {
         
       });
 
-const [active,setactive] = useState(false);
+// const [active,setactive] = useState(false);
   return (
     
         <div className='mainContainer'>
@@ -47,28 +47,9 @@ const [active,setactive] = useState(false);
         <h3>Data de Vencimento: {expense.duedate}</h3>
         <h3>Valor:{expense.value}</h3>
         <h3>Paga em {expense.paymentMadeIn}</h3>
-        <button onClick={() => HelperFunction(expense.id)}>Apagar despesa</button>
+        <button onClick={() => HelperFunction(expense.id)}>Apagar dívida</button>
        
-        <button onClick={() => EditExpense(expense)}>Editar despesa</button>
-      <table>
-       <tbody>
-       <thead>
-          <th>Nome</th>
-          <th>Valor</th>
-          <th>Vencimento</th>
-          <th>Paga em</th>
-        </thead>
-        <tr>
-         <td>{expense.name}</td>
-          <td>{expense.value}</td>
-          <td> {expense.duedate}</td>
-         <td> {expense.paymentMadeIn}
-         </td>
-        </tr>
-       </tbody>
-      </table>
-
-       {/* <button onClick={() => EditExpense(currentExpense)}>EDDDDITAR</button>  */}
+        <button onClick={() => EditExpense(expense)}>Editar dívida</button>
      
     </div>
     
