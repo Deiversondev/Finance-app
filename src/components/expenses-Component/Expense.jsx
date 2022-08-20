@@ -15,8 +15,8 @@ function Expense({expense}) {
 
   const {id} = expense
   const  HelperFunction = (id) =>{
-    deleteExpense(id)
     // navigate('/all')
+    deleteExpense(id)
     window.location.reload()
   }
 
@@ -51,19 +51,21 @@ const [active,setactive] = useState(false);
        
         <button onClick={() => EditExpense(expense)}>Editar despesa</button>
       <table>
-        <tr>
+       <tbody>
+       <thead>
           <th>Nome</th>
-          <th>Vencimento</th>
           <th>Valor</th>
-          <th>PG</th>
-        </tr>
+          <th>Vencimento</th>
+          <th>Paga em</th>
+        </thead>
         <tr>
-         <td>jj</td>
+         <td>{expense.name}</td>
           <td>{expense.value}</td>
-          <td> {expense.paymentMadeIn}
+          <td> {expense.duedate}</td>
+         <td> {expense.paymentMadeIn}
          </td>
         </tr>
-
+       </tbody>
       </table>
 
        {/* <button onClick={() => EditExpense(currentExpense)}>EDDDDITAR</button>  */}

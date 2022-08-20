@@ -2,3 +2,22 @@
     display: flex;
     width: 80%;
 } */
+
+table {
+    width: 70%;
+    margin: 0px auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    border: 1px solid #000;
+}
+
+th {
+    border: 1px solid #000;
+    width: 80px;
+}
+
+td {
+    border: 1px solid #000;
+    width: 80px;
+}
