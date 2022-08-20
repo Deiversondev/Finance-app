@@ -1,10 +1,12 @@
 import { initializeApp } from "firebase/app";
 import {getFirestore} from '@firebase/firestore';
+import {useNavigate} from 'react-router-dom'
 // import {deleteDoc,doc,addDoc,collection,updateDoc} from 'firebase/firestore';
 import {collection, getDocs,addDoc,updateDoc,deleteDoc,doc} from 'firebase/firestore'
 
 
 
+// const history = useHistory()
 const firebaseConfig = {
   apiKey: "AIzaSyCvagbTjzNLdSNl6RoKuhwde86Xil_mKCM",
   authDomain: "finance-app-53a3d.firebaseapp.com",
@@ -15,12 +17,14 @@ const firebaseConfig = {
 };
 
 
+
 const app = initializeApp(firebaseConfig);
 export const db = getFirestore(app);
 
 export const deleteExpense = async (id) => {
   const expenseDocRef = doc(db, 'expenses' , id)
   deleteDoc(expenseDocRef);
+
 }
 
 

@@ -28,9 +28,7 @@ function AllExpenses() {
         {
             expenses.map((expense) => {
                 return ( 
-                   <div>
-                    <Expense expense={expense}/>
-                  </div>
+                    <Expense key={expense.id} expense={expense}/>
                 )
             })
         }

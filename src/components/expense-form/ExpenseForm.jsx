@@ -20,7 +20,6 @@ function ExpenseForm() {
       paymentMadeIn:''
     },
     onSubmit: values => {
-      alert(JSON.stringify(values, null, 2));
       navigate('/all')
       createExpense(values)
     },
