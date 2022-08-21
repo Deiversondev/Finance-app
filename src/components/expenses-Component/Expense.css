@@ -1,12 +1,13 @@
-table {
-    width: 70%;
-    margin: 0px auto;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    border: 1px solid #000;
-    align-items: center;
+.expenseContainer {
+    border: 2px solid #000;
+    width: 45%;
 }
+
+
+/* mainContainer {
+    display: flex;
+    width: 90%;
+} */
 
 th {
     border: 1px solid #000;

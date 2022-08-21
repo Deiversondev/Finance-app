@@ -3,6 +3,7 @@ import { ExpenseContext } from '../context/context';
 import {collection,getDocs,addDoc,updateDoc,deleteDoc,doc} from 'firebase/firestore';
 import {db} from '../firebase/config'
 import Expense from '../components/expenses-Component/Expense';
+import'./AllExpenses.css'
 
 
 function AllExpenses() {
@@ -22,9 +23,8 @@ function AllExpenses() {
       getExpenses()
     }, [])
   return (
-    <div>
+    <div className='mainContainer'>
         
-
         {
             expenses.map((expense) => {
                 return ( 
@@ -32,7 +32,6 @@ function AllExpenses() {
                 )
             })
         }
-        
         
         </div>
   )
