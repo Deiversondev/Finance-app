@@ -56,7 +56,7 @@ function ExpenseForm() {
     </div>
 
     <div>
-    <label htmlFor="dueDate">Vencimento</label>
+    <label htmlFor="dueDate">Vencimento :</label>
           <input
             id="duedate"
             name="duedate"
